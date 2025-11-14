@@ -15,6 +15,8 @@ def adicionar_produto(nome: str, categoria: str, preco_unitario: float, quantida
     funcao.cadastrar_produto(nome, categoria, preco_unitario, quantidade)
     return {"mensagem": "Produto cadastrado com sucesso"}
 
+
+#- listar produtos
 @app.get("/produtos")
 def listar_produtos():
     produtos = funcao.listar_produto()
@@ -33,3 +35,13 @@ def listar_produtos():
     return {"produtos": lista}
 
 
+#- Atualizar produtos
+@app.put("/produtos/{id_produto}")
+def atualizar_produto(id_produto: int, novo_preco: float, nova_quantidade: int):
+    produto = funcao.buscar_produto(id_produto)
+
+    if produto:
+        funcao.atualizar_produto(id_produto, novo_preco, nova_quantidade)
+        return{"mensagem": "Produto atualizado com sucesso"}
+    else:
+        return {"erro": "Produto não encontrado"}
