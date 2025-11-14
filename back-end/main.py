@@ -36,6 +36,7 @@ def listar_produtos():
 
 
 #- Atualizar produtos
+
 @app.put("/produtos/{id_produto}")
 def atualizar_produto(id_produto: int, novo_preco: float, nova_quantidade: int):
     produto = funcao.buscar_produto(id_produto)
