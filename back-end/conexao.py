@@ -21,5 +21,3 @@ def conector():
         print(f"Erro de conexão")
         return None, None
     
-
-conector()
