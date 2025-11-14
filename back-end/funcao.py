@@ -21,4 +21,25 @@ def criar_tabela():
             cursor.close()
             conexao.close()
 
-criar_tabela()
+
+
+# - função adicionar produto 
+
+def cadastrar_produto(nome, categoria, preco_unitario, quantidade):
+    conexao, cursor = conector()
+    if conexao:
+        try:
+            cursor.execute(
+                "INSERT INTO produtos (nome, categoria, preco, quantidade) VALUES (%s, %s, %s, %s)",
+                (nome, categoria, preco_unitario, quantidade)
+            )
+            conexao.commit()
+        except Exception as erro:
+            print(f"Erro ao cadastrar o produto {erro}")
+        finally:
+            cursor.close()
+            conexao.close()
+
+
+
+
