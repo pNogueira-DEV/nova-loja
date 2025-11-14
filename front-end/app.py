@@ -74,6 +74,24 @@ elif menu == "Atualizar produtos":
 
 
 
+elif menu == "Excluir produto":
+    st.header("🗑️ Deletar produto")
+    id_produto = st.number_input("ID do produto a ser deletado", min_value=1, step=1)
+
+    if st.button("Excluir"):
+        response = requests.delete(f"{API_URL}/produtos/{id_produto}")
+
+        if response.status_code == 200:
+            data = response.json()
+            if "error" not in data:
+                st.success("Produto excluído com sucesso!")
+            else:
+                st.error(data["error"])
+        else:
+            st.error("Erro ao excluir o produto")
+
+
+
 
 
 
